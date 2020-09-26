@@ -9,9 +9,9 @@ def Escreve(Dic_infor, Alg, Base, v,e):
 
     for i in Dic_infor:
         if i == 'Dados_individual':
-            print(Dic_infor[i])
+            print(Dic_infor[i], end='\n\n')
         else:
-            dados.write(i+'='+str(Dic_infor[i])+'\n')
+            dados.write(i+'= '+str(Dic_infor[i])+'\n')
     dados.close()
 
 def Calcula(DB,com,ate, f,alg,algr, vetor):
@@ -22,13 +22,16 @@ def Calcula(DB,com,ate, f,alg,algr, vetor):
     valores, comp, trocas, t_total = [], 0, 0, 0
     for c in range(int(f'{com}'),int(f'{ate}')):
         c = str(c)
+        if alg == 'Quick': parametro = (DB[c], 0, len(DB[c]-1))
+        else: parametro = DB[c]
+        
         #Marca o tempo tempo de ordenação de cada vetor 
         T1 = time.time()
-        alg(DB[c])
+        alg(parametro)
         T2 = time.time()
         t_total += T2-T1
         #Marca o número de trocas e comparações
-        val = algr(DB[c]) 
+        val = algr(parametro) 
         comp += val[0]
         trocas += val[1]
 
