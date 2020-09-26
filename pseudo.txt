@@ -1,0 +1,39 @@
+BUBBLESORT(vetor):
+    n = comprimento(vetor)
+    para j=n-1, até 0, j--:
+        para i=0, até j, i++:
+            se vetor[i] > vetor[i+1]
+                trocar vetor[i] <-> vetor[j]
+         
+
+
+INSERTION(vetor):
+    n = comprimento(vetor)
+    para i=1, até n, i++:
+        chaveatual = vetor[i]
+        posicao = i
+
+        enquanto posicao>0 e vetor[posicao-1]>chaveatual:
+            vetor[posicao] = vetor[posicao-1]
+            posicao = posicao-1
+        vetor[posicao] = chaveatual
+
+
+
+QUICKSORT(vetor, inicio, fim):
+    se inicio<fim:
+        pivô = PARTIR(vetor, inicio, fim)
+        QUICKSORT(vetor, inicio, pivô-1)
+        QUICKSORT(vetor, pivô+1, inicio)
+
+PARTIR(vetor, inicio, fim):
+    pivô = vetor[fim]
+    i = inicio-1
+
+    para j=inicio, até fim, j++:
+        se vetor[j] <= pivô:
+            i = i+1
+            trocar vetor[i] <-> vetor[j]
+    trocar vetor[i+1] <-> vetor[fim]
+
+    
