@@ -2,8 +2,11 @@ import time, shelve, CriandoDB
 import BubbleSort, InsetionSort, QuickSort
 
 def Escreve(Dic_infor, Alg, Base, v,e):
+    """Escreve um arquivo de texto com os dados obtidos da DB aplicada no vetor."""
+
     dados = open(f'Dados_{Alg}_{Base}.txt', 'a', encoding='UTF-8')
     dados.write(f'\nTeste dos {v} vetores com {e}.\n')
+
     for i in Dic_infor:
         if i == 'Dados_individual':
             print(Dic_infor[i])
@@ -12,6 +15,8 @@ def Escreve(Dic_infor, Alg, Base, v,e):
     dados.close()
 
 def Calcula(DB,com,ate, f,alg,algr, vetor):
+    """Calcula o tempo, número de trocas e comparações.
+    retorna um dicionário com os dados."""
     vetor = {}
 
     valores, comp, trocas, t_total = [], 0, 0, 0
