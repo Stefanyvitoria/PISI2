@@ -16,9 +16,9 @@ def partition(alist,f,l):
     alist[i+1],alist[l]  = alist[l], alist[i+1]
     return i+1
 
+
 comp = 0
 troca = 0
-
 def quicksort_registros(alist, first, last):
     """Odena um vetor em ordem crescente e retorna o número de comparações e trocas."""
     global comp, troca

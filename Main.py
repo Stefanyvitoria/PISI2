@@ -49,7 +49,7 @@ def main():
         CriandoDB.CreateDBInversa()
         DB = shelve.open('DBInversa')
     elif base == 'Aleatoria':
-        CriandoDB.CreateDBOrdenada()
+        CriandoDB.CreateDBAleatoria()
         DB = shelve.open('DBAleatoria')
 
     algoritmo = input('Algoritmo: ').strip().capitalize()
