@@ -1,48 +1,49 @@
-import sys, random
+import sys
 sys.setrecursionlimit(1000000)
 
-def quick_sort(alist, first, last):
-    """Odena um vetor em ordem crescente."""
-    if first < last:
-        q = partition(alist, first, last)
-        quick_sort(alist, first, q)
-        quick_sort(alist, q+1, last)
+def quickSort(arr,low,high): 
+	if low < high: 
 
-def partition(alist,f,l):
-    x = alist[l-1] #pivô
+		pi = partition(arr,low,high) 
 
-    for i in range(f,l):
-        if alist[i] <= x:
-            f += 1
-            l += 1
-            alist[i], alist[f-1] = alist[f-1], alist[i]
-        else:
-            l += 1
-    return f-1
+		quickSort(arr, low, pi-1) 
+		quickSort(arr, pi+1, high)
 
+def partition(arr,low,high): 
+	i = ( low-1 )		  
+	pivot = arr[high]	 # pivô 
 
-comp = troca = 0
-def R_quick_sort(alist, first, last):
-    global comp, troca
-    """Odena um vetor em ordem crescente."""
-    if first < last:
-        q = R_partition(alist, first, last)
-        R_quick_sort(alist, first, q)
-        R_quick_sort(alist, q+1, last)
-        return [comp, troca]
+	for j in range(low , high): 
+		if arr[j] <= pivot: 
+		
+			i = i+1
+			arr[i],arr[j] = arr[j],arr[i] 
+
+	arr[i+1],arr[high] = arr[high],arr[i+1] 
+	return ( i+1 ) 
 
 
-def R_partition(alist,f,l):
-    global comp, troca
-    x = alist[l-1] #pivô
+comp = trocas = 0
+def quickSort_Registros(arr,low,high): 
+	if low < high: 
 
-    for i in range(f,l):
+		pi = partition_Registros(arr,low,high) 
+
+		quickSort_Registros(arr, low, pi-1) 
+		quickSort_Registros(arr, pi+1, high) 
+
+
+def partition_Registros(arr,low,high): 
+    global comp, trocas
+    i = ( low-1 )
+    pivot = arr[high]	 # pivô
+
+    for j in range(low , high): 
         comp += 1
-        if alist[i] <= x:
-            f += 1
-            l += 1
-            troca += 1
-            alist[i], alist[f-1] = alist[f-1], alist[i]
-        else:
-            l += 1
-    return f-1
+        if arr[j] <= pivot: 
+            trocas += 1
+            i = i+1
+            arr[i],arr[j] = arr[j],arr[i] 
+
+    arr[i+1],arr[high] = arr[high],arr[i+1] 
+    return ( i+1 ) 
