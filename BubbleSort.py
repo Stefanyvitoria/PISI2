@@ -22,10 +22,9 @@ def bubblesort_regitros(alist):
 
 from time import process_time
 
-def Calcula_Tempo(DB):
+def Calcula_Tempo_Bubble(DB):
 
     temp500 = []
-
     for j in range(1,50+1):
 
         j = str(j)
@@ -36,7 +35,6 @@ def Calcula_Tempo(DB):
         temp500.append(tf - ti)
 
     temp1000 = [] 
-
     for j in range(51,80+1):
         j = str(j)
         ti = process_time()
@@ -46,7 +44,6 @@ def Calcula_Tempo(DB):
         temp1000.append(tf - ti)
     
     temp10000 = []
-
     for j in range(81,83+1):
         j = str(j)
 
@@ -61,4 +58,4 @@ def Calcula_Tempo(DB):
 if __name__ == "__main__":
     import shelve
     DB = shelve.open('DBOrdenada')
-    print(Calcula_Tempo(DB))
+    print(Calcula_Tempo_Bubble(DB))

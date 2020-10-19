@@ -26,3 +26,43 @@ def insertionsort_registros(alist):
         alist[position] = currentvalue
     return (comp, troca)
 
+
+from time import process_time
+
+def Calcula_Tempo_insertion(DB):
+
+    temp500 = []
+    for j in range(1,50+1):
+
+        j = str(j)
+        ti = process_time()
+        insertionsort(DB[j])
+        tf = process_time()
+
+        temp500.append(tf - ti)
+
+    temp1000 = [] 
+    for j in range(51,80+1):
+        j = str(j)
+        ti = process_time()
+        insertionsort(DB[j])
+        tf = process_time()
+
+        temp1000.append(tf - ti)
+    
+    temp10000 = []
+    for j in range(81,83+1):
+        j = str(j)
+
+        ti = process_time()
+        insertionsort(DB[j])
+        tf = process_time()
+
+        temp10000.append(tf - ti)
+    
+    return ( sum(temp500)/50, sum(temp1000)/30, sum(temp10000)/3)
+
+if __name__ == "__main__":
+    import shelve
+    DB = shelve.open('DBOrdenada')
+    print(Calcula_Tempo_insertion(DB))
