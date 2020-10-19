@@ -24,5 +24,5 @@ def insertionsort_registros(alist):
             position = position-1
 
         alist[position] = currentvalue
-    return [comp, troca]
+    return (comp, troca)
 

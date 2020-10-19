@@ -1,3 +1,4 @@
+import random
 dados = [ele for ele in range(10000)]
 #dados = [ele for ele in range(10000,0,-1)]
 #dados = [random.randint(0,20) for _ in range(10000)]

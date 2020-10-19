@@ -1,4 +1,3 @@
-
 def bubblesort(alist):
     """Ordena um vetor em ordem crescente."""
     n = len(alist)
@@ -19,4 +18,4 @@ def bubblesort_regitros(alist):
             if alist[i] > alist[i+1]:
                 troca += 1
                 alist[i], alist[i+1] = alist[i+1], alist[i]
-    return [comp, troca]
+    return (comp, troca)
