@@ -51,16 +51,23 @@ def CreateDBInversa():
     
     dataBase = shelve.open('DBInversa')
 
-    vetor = [ele for ele in range(500,0,-1)]
+    i,j = 0,500
     for num in range(1,50+1): 
+        vetor = [ele for ele in range(j,i,-1)]
         dataBase[str(num)] = vetor
-
-    vetor = [ele for ele in range(1000,0,-1)]
+        i,j = j,j+500
+    
+    i,j = 0,1000
+    
     for num in range(51,80+1): 
+        vetor = [ele for ele in range(j,i,-1)]
         dataBase[str(num)] = vetor
+        i,j = j,j+1000
 
-    vetor = [ele for ele in range(10000,0,-1)]
+    i,j = 0,10000
     for num in range(81,83+1): 
+        vetor = [ele for ele in range(j,i,-1)]
         dataBase[str(num)] = vetor
+        i,j = j,j+10000
 
     dataBase.close()
