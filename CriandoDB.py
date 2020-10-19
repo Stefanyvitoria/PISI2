@@ -26,17 +26,23 @@ def CreateDBOrdenada():
 
     dataBase = shelve.open('DBOrdenada')
 
-    vetor = [ele for ele in range(1,501)]
+    i,j =1,501
     for num in range(1,50+1): 
+        vetor = [ele for ele in range(i,j)]
         dataBase[str(num)] = vetor
+        i,j = j, j+500
 
-    vetor = [ele for ele in range(1,1001)]
+    i,j = 1,1001
     for num in range(51,80+1):  
+        vetor = [ele for ele in range(i,j)]
         dataBase[str(num)] = vetor
+        i,j = j,j+1000
 
-    vetor = [ele for ele in range(1,10001)]
+    i,j = 1,10001
     for num in range(81,83+1):  
+        vetor = [ele for ele in range(i,j)]
         dataBase[str(num)] = vetor
+        i,j = j,j+10000
 
     dataBase.close()  
 
