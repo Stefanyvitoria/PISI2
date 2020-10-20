@@ -66,3 +66,4 @@ if __name__ == "__main__":
     import shelve
     DB = shelve.open('DBOrdenada')
     print(Calcula_Tempo_insertion(DB))
+    #print(insertionsort_registros([ele for ele in range(1,10001)]))

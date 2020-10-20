@@ -22,8 +22,10 @@ def partition(arr,low,high):
 
 
 
-comp = trocas = 0
+
 def quickSort_registros(arr):
+    global comp, trocas
+    comp = trocas = 0
     quick_Sort_registros(arr,0,len(arr)-1)
     return (comp,trocas)
 
@@ -84,6 +86,7 @@ def Calcula_Tempo_Quick(DB):
     return ( sum(temp500)/50, sum(temp1000)/30, sum(temp10000)/3)
 
 if __name__ == "__main__":
+    #print(quickSort_registros([ele for ele in range(501,1001)]))
     import shelve
     DB = shelve.open('DBOrdenada')
     print(Calcula_Tempo_Quick(DB))

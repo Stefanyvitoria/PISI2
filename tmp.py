@@ -1,55 +1,25 @@
-import sys
-sys.setrecursionlimit(1000000)
+def insertionsort(alist):
+    """Ordena um vetor em ordem crescente."""
+    for ind in range(1,len(alist)):
+        currentvalue = alist[ind]
+        position = ind
 
-comp = trocas = 0
+        while position > 0 and alist[position-1]>currentvalue:
+            alist[position] = alist[position-1]
+            position = position-1
 
-def quickSort(alist):
-    quickSortHelper(alist,0,len(alist)-1)
-    return (comp,trocas)
+        alist[position] = currentvalue
+   
 
-def quickSortHelper(alist,first,last):
-    if first<last:
+a = [ele for ele in range(1,10001)]
 
-        splitpoint = partition(alist,first,last)
-
-        quickSortHelper(alist,first,splitpoint-1)
-        quickSortHelper(alist,splitpoint+1,last)
+from time import process_time
+import shelve
+DB = shelve.open('DBOrdenada')
 
 
-def partition(alist,first,last):
-    global comp, trocas
-    pivotvalue = alist[first]
+ti = process_time()
+insertionsort(a)
+tf = process_time()
 
-    leftmark = first+1
-    rightmark = last
-
-    done = False
-    while not done:
-        
-        while leftmark <= rightmark and alist[leftmark] <= pivotvalue:
-            comp += 1
-            leftmark = leftmark + 1
-
-        while alist[rightmark] >= pivotvalue and rightmark >= leftmark:
-            comp += 1
-            rightmark = rightmark -1
-
-        
-        if rightmark < leftmark:
-            done = True
-        else:
-            trocas += 1
-            alist[leftmark], alist[rightmark] = alist[rightmark], alist[leftmark]
-    
-    trocas += 1
-    alist[first], alist[rightmark] = alist[rightmark], alist[first]
-    
-    return rightmark
-
-#import random
-#dados = [ele for ele in range(100)]
-dados = [ele for ele in range(100,0,-1)]
-#dados = [random.randint(0,20) for _ in range(100)]
-
-print(quickSort(dados))
-print(dados)
+print(tf-ti)

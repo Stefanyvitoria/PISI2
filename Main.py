@@ -1,85 +1,103 @@
-import time, shelve, CriandoDB
-import BubbleSort, InsetionSort, QuickSort
+from time import process_time 
+import BubbleSort, InsetionSort, QuickSort, CriandoDB, shelve
 
-def Escreve(Dic_infor, Alg, Base, v,e):
-    """Escreve um arquivo de texto com os dados obtidos da DB aplicada no vetor."""
+def Escreve(alg,tbase, dado, aux='CompTroca'):
+    
+    arquivo_out = open(f'{alg}_{tbase}.txt','a')
 
-    dados = open(f'Dados_{Alg}_{Base}.txt', 'a', encoding='UTF-8')
-    dados.write(f'\nTeste dos {v} vetores com {e}.\n')
+    if aux != 'tempo':
+        arquivo_out.write(f'Número médio de comparações do {alg} com base {tbase} em vetores de:\n500 elementos:\n')
+        arquivo_out.write(f'comparações: {dado[0][0]:.1f}      Trocas: {dado[0][1]:.1f}\n')
+        arquivo_out.write(f'1000 elementos:\n')
+        arquivo_out.write(f'comparações: {dado[1][0]:.1f}      Trocas: {dado[1][1]:.1f}\n')
+        arquivo_out.write(f'10000 elementos:\n')
+        arquivo_out.write(f'comparações: {dado[2][0]:.1f}      Trocas: {dado[2][1]:.1f}\n')
 
-    for i in Dic_infor:
-        if i == 'Dados_individual':
-            print(Dic_infor[i], end='\n\n')
-        else:
-            dados.write(i+'= '+str(Dic_infor[i])+'\n')
-    dados.close()
+    else:
+        arquivo_out.write(f'\nTempo médio da ordenação do {alg} com base {tbase} em vetores de:\n500 elementos:\n')
+        arquivo_out.write(f'{dado[0]}\n')
+        arquivo_out.write(f'1000 elementos:\n')
+        arquivo_out.write(f'{dado[1]}\n')
+        arquivo_out.write(f'10000 elementos:\n')
+        arquivo_out.write(f'{dado[2]}\n')
 
-def Calcula(DB,com,ate, f,alg,algr, vetor):
-    """Calcula o tempo, número de trocas e comparações.
-    retorna um dicionário com os dados."""
-    vetor = {}
-
-    valores, comp, trocas, t_total = [], 0, 0, 0
-    for c in range(int(f'{com}'),int(f'{ate}')):
-        c = str(c)
-        if alg == 'Quick': parametro = (DB[c], 0, len(DB[c]-1))
-        else: parametro = DB[c]
+    arquivo_out.close()
         
-        #Marca o tempo tempo de ordenação de cada vetor 
-        T1 = time.time()
-        alg(parametro)
-        T2 = time.time()
-        t_total += T2-T1
-        #Marca o número de trocas e comparações
-        val = algr(parametro) 
-        comp += val[0]
-        trocas += val[1]
 
-        valores.append([T2-T1, val[0], val[1]])
 
-        if len(valores) == f:
-            vetor['Dados_individual'] = valores.copy()
-            vetor['Tempo_PorVetor'] = t_total/f
-            vetor['Comparacao_PorVetor'] = comp/f
-            vetor['Trocas_PorVetor'] = trocas/f
-            vetor['Tempo_total'] = t_total
-            vetor['Comparacao_total'] = comp
-            vetor['Troca_total'] = trocas
-            break
-    return vetor
+
+
+def Conta_CT(DB, alg):
+    resultado = []
+
+    comp = 0
+    trocas = 0
+    for i in range(1,50+1):
+        i = str(i)
+        #print(DB[i])
+        c, t = alg(DB[i])    
+        comp += c
+        trocas += t
+    #print((comp/50, trocas/50))
+    resultado.append((comp/50, trocas/50))
+
+    comp = 0
+    trocas = 0
+    for i in range(51,80+1):
+        i = str(i)
+        c, t = alg(DB[i])    
+        comp += c
+        trocas += t
+    #print((comp/30, trocas/30))
+    resultado.append((comp/30, trocas/30))
+
+    comp = 0
+    trocas = 0
+    for i in range(81,83+1):
+        i = str(i)
+        c, t = alg(DB[i])    
+        comp += c
+        trocas += t
+    #print((comp/3, trocas/3))
+    resultado.append((comp/3, trocas/3))
+
+    return resultado
+
 
 def main():
     base = input('Base: ').strip().capitalize()
+
     if base == 'Ordenada':
-        CriandoDB.CreateDBOrdenada()
-        DB = shelve.open('DBOrdenada')
+        CriandoDB.CreateDBOrdenada() #Cria o data base
+        DataBase = shelve.open('DBOrdenada')
+
     elif base == 'Inversa':
-        CriandoDB.CreateDBInversa()
-        DB = shelve.open('DBInversa')
-    elif base == 'Aleatoria':
-        CriandoDB.CreateDBAleatoria()
-        DB = shelve.open('DBAleatoria')
-
-    algoritmo = input('Algoritmo: ').strip().capitalize()
-    if algoritmo == 'Bubble':
-        alg = BubbleSort.bubblesort
-        algr = BubbleSort.bubblesort_regitros
-    elif algoritmo == 'Insertion':
-        alg = InsetionSort.insertionsort
-        algr = InsetionSort.insertionsort_registros
-    elif algoritmo == 'Quick':
-        alg = QuickSort.quicksort
-        algr = QuickSort.quicksort_registros
-
-    vetor500 = Calcula(DB, 1, 51, 50,alg, algr,'vetor500x50')
-    Escreve(vetor500, algoritmo, base,50, 500)
-    vetor100 = Calcula(DB, 51, 81, 30,alg, algr,'vetor100x30')
-    Escreve(vetor100, algoritmo, base, 30, 1000)
-    vetor10000 = Calcula(DB, 81, 84, 3,alg, algr,'vetor10000x3')
-    Escreve(vetor10000, algoritmo, base, 3, 10000)
+        CriandoDB.CreateDBInversa() #Cria o data base
+        DataBase = shelve.open('DBInversa')
     
-    DB.close()
+    elif base == 'Aleatoria':
+        CriandoDB.CreateDBAleatoria() #Cria o data base
+        DataBase = shelve.open('DBAleatoria')
+
+    
+    valores_comp_trocas_b = Conta_CT(DataBase, BubbleSort.bubblesort_regitros)
+    Escreve('bubble',base,valores_comp_trocas_b)
+    tempo = BubbleSort.Calcula_Tempo_Bubble(DataBase)
+    Escreve('bubble',base,tempo,"tempo")
+    
+    valores_comp_trocas_i =  Conta_CT(DataBase, InsetionSort.insertionsort_registros)
+    Escreve('insertion',base,valores_comp_trocas_i)
+    tempo = InsetionSort.Calcula_Tempo_insertion(DataBase)
+    Escreve('insertion',base,tempo,"tempo")
+
+    valores_comp_trocas_q = Conta_CT(DataBase, QuickSort.quickSort_registros)
+    Escreve('quick',base,valores_comp_trocas_q)
+    tempo = QuickSort.Calcula_Tempo_Quick(DataBase)
+    Escreve('quick',base,tempo,"tempo")
+
+    DataBase.close()
     return None
 
 if __name__ == '__main__':
     main()
+    
