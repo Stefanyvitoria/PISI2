@@ -1,0 +1,15 @@
+Número médio de comparações do quick com base Aleatoria em vetores de:
+500 elementos:
+comparações: 4847.8      Trocas: 2708.1
+1000 elementos:
+comparações: 11082.2      Trocas: 6273.1
+10000 elementos:
+comparações: 151978.3      Trocas: 88351.0
+
+Tempo médio da ordenação do quick com base Aleatoria em vetores de:
+500 elementos:
+0.0012106330599959848
+1000 elementos:
+0.0026849382666701634
+10000 elementos:
+0.035324107333328435

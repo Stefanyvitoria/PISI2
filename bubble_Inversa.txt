@@ -1,0 +1,15 @@
+Número médio de comparações do bubble com base Inversa em vetores de:
+500 elementos:
+comparações: 124750.0      Trocas: 124750.0
+1000 elementos:
+comparações: 499500.0      Trocas: 499500.0
+10000 elementos:
+comparações: 49995000.0      Trocas: 49995000.0
+
+Tempo médio da ordenação do bubble com base Inversa em vetores de:
+500 elementos:
+0.035997088779999444
+1000 elementos:
+0.14984416053333216
+10000 elementos:
+15.931502177000004

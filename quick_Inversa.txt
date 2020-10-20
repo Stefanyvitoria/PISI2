@@ -1,0 +1,15 @@
+Número médio de comparações do quick com base Inversa em vetores de:
+500 elementos:
+comparações: 124750.0      Trocas: 62749.0
+1000 elementos:
+comparações: 499500.0      Trocas: 250499.0
+10000 elementos:
+comparações: 49995000.0      Trocas: 25004999.0
+
+Tempo médio da ordenação do quick com base Inversa em vetores de:
+500 elementos:
+0.019612007279994258
+1000 elementos:
+0.08146436893333657
+10000 elementos:
+8.100604321000011

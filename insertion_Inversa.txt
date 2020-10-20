@@ -1,0 +1,15 @@
+Número médio de comparações do insertion com base Inversa em vetores de:
+500 elementos:
+comparações: 499.0      Trocas: 124750.0
+1000 elementos:
+comparações: 999.0      Trocas: 499500.0
+10000 elementos:
+comparações: 9999.0      Trocas: 49995000.0
+
+Tempo médio da ordenação do insertion com base Inversa em vetores de:
+500 elementos:
+0.027687353839998537
+1000 elementos:
+0.11750857919999855
+10000 elementos:
+12.668965920000005

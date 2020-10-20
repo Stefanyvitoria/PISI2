@@ -1,0 +1,15 @@
+Número médio de comparações do quick com base Ordenada em vetores de:
+500 elementos:
+comparações: 124750.0      Trocas: 125249.0
+1000 elementos:
+comparações: 499500.0      Trocas: 500499.0
+10000 elementos:
+comparações: 49995000.0      Trocas: 50004999.0
+
+Tempo médio da ordenação do quick com base Ordenada em vetores de:
+500 elementos:
+0.02926280714000143
+1000 elementos:
+0.11858406566666511
+10000 elementos:
+12.077230360666656

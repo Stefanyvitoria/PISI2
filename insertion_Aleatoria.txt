@@ -1,0 +1,15 @@
+Número médio de comparações do insertion com base Aleatoria em vetores de:
+500 elementos:
+comparações: 499.0      Trocas: 62408.7
+1000 elementos:
+comparações: 999.0      Trocas: 251320.1
+10000 elementos:
+comparações: 9999.0      Trocas: 25001998.0
+
+Tempo médio da ordenação do insertion com base Aleatoria em vetores de:
+500 elementos:
+0.014531785399999535
+1000 elementos:
+0.061315216766665986
+10000 elementos:
+6.3798981683333365

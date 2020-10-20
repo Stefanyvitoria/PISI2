@@ -1,0 +1,15 @@
+Número médio de comparações do bubble com base Aleatoria em vetores de:
+500 elementos:
+comparações: 124750.0      Trocas: 62408.7
+1000 elementos:
+comparações: 499500.0      Trocas: 251320.1
+10000 elementos:
+comparações: 49995000.0      Trocas: 25001998.0
+
+Tempo médio da ordenação do bubble com base Aleatoria em vetores de:
+500 elementos:
+0.02654880974000065
+1000 elementos:
+0.11114754959999947
+10000 elementos:
+11.766903072

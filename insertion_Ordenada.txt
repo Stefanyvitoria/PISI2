@@ -1,0 +1,15 @@
+Número médio de comparações do insertion com base Ordenada em vetores de:
+500 elementos:
+comparações: 499.0      Trocas: 0.0
+1000 elementos:
+comparações: 999.0      Trocas: 0.0
+10000 elementos:
+comparações: 9999.0      Trocas: 0.0
+
+Tempo médio da ordenação do insertion com base Ordenada em vetores de:
+500 elementos:
+0.00021081989999927942
+1000 elementos:
+0.0004509884666677048
+10000 elementos:
+0.004534354000000462
