@@ -30,10 +30,11 @@ PARTIR(vetor, inicio, fim):
     pivô = vetor[fim]
     i = inicio-1
 
-    para j=inicio, até fim, j++:
+    para j=inicio, até fim-1, j++:
         se vetor[j] <= pivô:
             i = i+1
             trocar vetor[i] <-> vetor[j]
     trocar vetor[i+1] <-> vetor[fim]
+    retorne i+1
 
     
